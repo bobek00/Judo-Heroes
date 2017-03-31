@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Judo_Heroes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,9 +23,79 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <segue destination="MYV-vJ-LP6" kind="show" identifier="logIn" id="8xa-Vr-oSa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="4" y="124"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="HlZ-N6-Shq">
+            <objects>
+                <viewController restorationIdentifier="login" id="MYV-vJ-LP6" userLabel="Login View Controller" customClass="LoginViewController" customModule="Judo_Heroes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CaM-GB-QfG"/>
+                        <viewControllerLayoutGuide type="bottom" id="kaL-D0-E0T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8VN-gU-yZl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your valid email here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2vg-Ge-Ua4">
+                                <rect key="frame" x="16" y="177" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="WIv-fG-uqx"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ddl-8o-op1">
+                                <rect key="frame" x="16" y="215" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="s0B-Sl-Iau"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gL1-Gg-wax">
+                                <rect key="frame" x="16" y="253" width="343" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="SeX-Qd-HQ7"/>
+                                </constraints>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="MYV-vJ-LP6" eventType="touchUpInside" id="kmf-vj-6Ym"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gL1-Gg-wax" firstAttribute="leading" secondItem="8VN-gU-yZl" secondAttribute="leadingMargin" id="1pN-Kc-WP3"/>
+                            <constraint firstItem="ddl-8o-op1" firstAttribute="trailing" secondItem="8VN-gU-yZl" secondAttribute="trailingMargin" id="3rj-LL-BL8"/>
+                            <constraint firstItem="2vg-Ge-Ua4" firstAttribute="top" secondItem="CaM-GB-QfG" secondAttribute="bottom" constant="157" id="Ho7-EN-Vxl"/>
+                            <constraint firstItem="ddl-8o-op1" firstAttribute="leading" secondItem="8VN-gU-yZl" secondAttribute="leadingMargin" id="M9h-6x-ghM"/>
+                            <constraint firstItem="ddl-8o-op1" firstAttribute="top" secondItem="2vg-Ge-Ua4" secondAttribute="bottom" constant="8" id="OuI-bk-Hs9"/>
+                            <constraint firstItem="gL1-Gg-wax" firstAttribute="top" secondItem="ddl-8o-op1" secondAttribute="bottom" constant="8" id="T2O-X8-4cp"/>
+                            <constraint firstItem="2vg-Ge-Ua4" firstAttribute="leading" secondItem="8VN-gU-yZl" secondAttribute="leadingMargin" id="a1f-UX-heD"/>
+                            <constraint firstItem="gL1-Gg-wax" firstAttribute="trailing" secondItem="8VN-gU-yZl" secondAttribute="trailingMargin" id="jIQ-YY-E6t"/>
+                            <constraint firstItem="2vg-Ge-Ua4" firstAttribute="trailing" secondItem="8VN-gU-yZl" secondAttribute="trailingMargin" id="yXK-TW-VUh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextfield" destination="2vg-Ge-Ua4" id="usl-uH-EJM"/>
+                        <outlet property="passwordTexfield" destination="ddl-8o-op1" id="zM0-Ta-kf3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s76-R9-hTP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781.60000000000002" y="136.28185907046478"/>
         </scene>
     </scenes>
 </document>
