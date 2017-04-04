@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Foundation   
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet var competitionsTableView: UITableView!
     
     var ref: FIRDatabaseReference!
     var competitionYears: [Any] = []
@@ -27,15 +30,49 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkForUser()
-        importCompetitionData()
+        
+
+//        competitionsTableView.reloadData()
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "compInfoSegue" {
+            if let compInfoVC = segue.destination as? CompetitionInfoVC {
+                if let path = self.competitionsTableView.indexPathForSelectedRow {
+                    compInfoVC.competitionID = self.competitionIDs[path.row] as! String
+                    compInfoVC.competitionName = self.competitionNames[path.row]
+                }
+            }
+        }
+    }
+        override func viewWillAppear(_ animated: Bool) {
+        checkForUser()
+        importCompetitionData()
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.backgroundColor = UIColor.black
+        cell.textLabel?.textColor = UIColor.white
+        cell.textLabel?.text = self.competitionNames[indexPath.row]
+        
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: "compInfoSegue", sender: ViewController.self)
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return self.competitionNames.count
+    }
 
-    func importCompetitionData() {
+    public func importCompetitionData() {
         let competitionsRef = ref.child("competitions")
         
-        competitionsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        competitionsRef.queryOrderedByValue().observeSingleEvent(of: .value, with: { (snapshot) in
             
             let rootValue = snapshot.value as? NSDictionary
             let years = rootValue?.allKeys
@@ -46,9 +83,9 @@ class ViewController: UIViewController {
 
                     let dataForYear = snapshot.value as! NSDictionary
                     self.competitionIDs = dataForYear.allKeys
-
+                    
                         for compID in self.competitionIDs {
-
+                            
                             competitionsRef.child(year as! String).child(compID as! String).observe(.value, with: { (snapshot) in
 //                                print(snapshot.value as! NSDictionary)
                                 let dataForCompetition = snapshot.value as! NSDictionary
@@ -64,26 +101,27 @@ class ViewController: UIViewController {
 
                                 self.competitionNames.append(name)
                                 
+                                self.competitionsTableView.reloadData()
+                                
                                 let competition = Competition.init(has_results: has_results, name: name, date_from: date_from, date_to: date_to, country: country, city: city, country_short: country_short, rank_name: rank_name)
                                 
 //                                print(competition.date_from)
-                                let dateString = competition.date_from
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "dd/MM/yyyy"
-                                let competitionStartDate = dateFormatter.date(from: dateString)
+//                                let dateString = competition.date_from
+//                                let dateFormatter = DateFormatter()
+//                                dateFormatter.dateFormat = "dd/MM/yyyy"
+//                                let competitionStartDate = dateFormatter.date(from: dateString)
 //                                print(competitionStartDate!)
-                                if competitionStartDate! < NSDate() as Date {
-                                    print(competition.name,"Past event")
-                                } else if competitionStartDate! > NSDate() as Date {
-                                    print(competition.name,"Future event")
-                                } else if competitionStartDate! == NSDate() as Date {
-                                    print(competition.name,"Event starts today")                                                                                     
-                                } else {
-                                    print("wtf")
-                                }
-
-                                
+//                                if competitionStartDate! < NSDate() as Date {
+//                                    print(competition.name,"Past event")
+//                                } else if competitionStartDate! > NSDate() as Date {
+//                                    print(competition.name,"Future event")
+//                                } else if competitionStartDate! == NSDate() as Date {
+//                                    print(competition.name,"Event starts today")                                                                                     
+//                                } else {
+//                                    print("wtf")
+//                                }
                             })
+                           
                     }
                 })
             }
