@@ -13,6 +13,9 @@ import FirebaseDatabase
 
 class ViewController: UIViewController {
     
+    
+
+    
     var ref: FIRDatabaseReference!
     var competitionYears: [Any] = []
     var competitionYear = Int()
@@ -31,6 +34,7 @@ class ViewController: UIViewController {
         importCompetitionData()
         
     }
+
 
     func importCompetitionData() {
         let competitionsRef = ref.child("competitions")
