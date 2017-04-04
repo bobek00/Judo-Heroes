@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     var competitionNames : [String] = []
     var finishedCompetitions : [String] = []
     var futureCompetitions : [String] = []
+    var competition = [Competition]()
     
     
     override func viewDidLoad() {
@@ -51,28 +52,44 @@ class ViewController: UIViewController {
                             competitionsRef.child(year as! String).child(compID as! String).observe(.value, with: { (snapshot) in
 //                                print(snapshot.value as! NSDictionary)
                                 let dataForCompetition = snapshot.value as! NSDictionary
-//                                print(dataForCompetition.value(forKey: "has_results") as! Int)
                                 
-                                if dataForCompetition.value(forKey: "has_results") as! Int != 0 {
-//                                    print("rezultati so")
-                                    self.finishedCompetitions.append(compID as! String)
-                                    
+                                let has_results = dataForCompetition.value(forKey: "has_results") as! Int
+                                let name = dataForCompetition.value(forKey: "name") as! String
+                                let date_from = dataForCompetition.value(forKey: "date_from") as! String
+                                let date_to = dataForCompetition.value(forKey: "date_to") as! String
+                                let country = dataForCompetition.value(forKey: "country") as! String
+                                let city = dataForCompetition.value(forKey: "city") as! String
+                                let country_short = dataForCompetition.value(forKey: "country_short") as! String
+                                let rank_name = dataForCompetition.value(forKey: "rank_name") as! String
+
+                                self.competitionNames.append(name)
+                                
+                                let competition = Competition.init(has_results: has_results, name: name, date_from: date_from, date_to: date_to, country: country, city: city, country_short: country_short, rank_name: rank_name)
+                                
+//                                print(competition.date_from)
+                                let dateString = competition.date_from
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "dd/MM/yyyy"
+                                let competitionStartDate = dateFormatter.date(from: dateString)
+//                                print(competitionStartDate!)
+                                if competitionStartDate! < NSDate() as Date {
+                                    print(competition.name,"Past event")
+                                } else if competitionStartDate! > NSDate() as Date {
+                                    print(competition.name,"Future event")
+                                } else if competitionStartDate! == NSDate() as Date {
+                                    print(competition.name,"Event starts today")                                                                                     
                                 } else {
-//                                    print("rezultatov ni")
-                                    self.futureCompetitions.append(compID as! String)
-                                    
+                                    print("wtf")
                                 }
-                                self.competitionNames = [dataForCompetition.value(forKey: "name") as! String]
-//                                print(self.competitionNames)
-                                print("Past competitions: \(self.finishedCompetitions.count)")
-                                print("Future competitions: \(self.futureCompetitions.count)")
+
+                                
                             })
-                            
                     }
                 })
             }
          })
     }
+    
     func checkForUser() {
         ref = FIRDatabase.database().reference()
         FIRAuth.auth()?.addStateDidChangeListener() {(auth, user) in
