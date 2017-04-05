@@ -20,12 +20,15 @@ class CompetitionInfoVC: UIViewController {
     
     var competitionName = String()
     var competitionID = String()
+    var competitionYear = String()
   
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         CompetitionNameLabel.text = competitionName
         parseDataFromUrl()
+        print(competitionYear)
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -46,20 +49,22 @@ class CompetitionInfoVC: UIViewController {
                     
                     let city = parsedData["city"] as! String
                     let country = parsedData["country"] as! String
-                    let country_short = parsedData["country_short"] as! String
-                    let rank_group = parsedData["rank_group"] as! String
-                    let rank_name = parsedData["rank_name"] as! String
                     let bgpic = parsedData["bgpic"] as! String
                     let date_from = parsedData["date_from"] as! String
-                    let year = parsedData["year"] as! String
-                    let title = parsedData["title"] as! String
                     let date_to = parsedData["date_to"] as! String
-                    let ages = parsedData["ages"] as! String
-
+                    
+//                    let ages = parsedData["ages"] as! String
+//                    let country_short = parsedData["country_short"] as! String
+//                    let rank_group = parsedData["rank_group"] as! String
+//                    let rank_name = parsedData["rank_name"] as! String
+                    var year = parsedData["year"] as! String
+//                    let title = parsedData["title"] as! String
+                    
                     self.cityLbl.text = city
                     self.countryLbl.text = country
                     self.dateLbl.text = "The competition will be held from \(date_from) until \(date_to)"
                     self.cityImg.sd_setImage(with: URL(string: bgpic))
+                    self.competitionYear = year
                     
                 } catch let error as NSError {
                     print(error)
@@ -71,4 +76,15 @@ class CompetitionInfoVC: UIViewController {
     @IBAction func dissmisButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "categoriesSegue" {
+            if let compCatVC = segue.destination as? CategoriesVC {
+                    compCatVC.competitionID = competitionID
+                    compCatVC.competitionName = competitionName
+                    compCatVC.competitionYear = self.competitionYear
+                
+            }
+        }
+    }
+
 }
