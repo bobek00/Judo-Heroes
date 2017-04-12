@@ -19,6 +19,8 @@
 		197754791E94D68800EDDB2B /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197754781E94D68800EDDB2B /* CategoriesVC.swift */; };
 		1977547B1E94DAB700EDDB2B /* MenCategoriesCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977547A1E94DAB700EDDB2B /* MenCategoriesCVCell.swift */; };
 		1977547D1E94DADD00EDDB2B /* WomenCategoriesCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977547C1E94DADD00EDDB2B /* WomenCategoriesCVCell.swift */; };
+		199CA5B81E9D035000B591DB /* CompetitorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199CA5B71E9D035000B591DB /* CompetitorsVC.swift */; };
+		199CA5BA1E9D046B00B591DB /* CompetitorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199CA5B91E9D046B00B591DB /* CompetitorTVC.swift */; };
 		19E5E3B01E92CB4400E62733 /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E5E3AF1E92CB4400E62733 /* Competition.swift */; };
 		19E5E3B61E93991700E62733 /* CompetitionInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E5E3B51E93991700E62733 /* CompetitionInfoVC.swift */; };
 		19FC50D31E8E5F8600DCB6DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC50D21E8E5F8600DCB6DD /* LoginViewController.swift */; };
@@ -62,6 +64,8 @@
 		197754781E94D68800EDDB2B /* CategoriesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		1977547A1E94DAB700EDDB2B /* MenCategoriesCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenCategoriesCVCell.swift; sourceTree = "<group>"; };
 		1977547C1E94DADD00EDDB2B /* WomenCategoriesCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WomenCategoriesCVCell.swift; sourceTree = "<group>"; };
+		199CA5B71E9D035000B591DB /* CompetitorsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetitorsVC.swift; sourceTree = "<group>"; };
+		199CA5B91E9D046B00B591DB /* CompetitorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetitorTVC.swift; sourceTree = "<group>"; };
 		19E5E3AF1E92CB4400E62733 /* Competition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
 		19E5E3B51E93991700E62733 /* CompetitionInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetitionInfoVC.swift; sourceTree = "<group>"; };
 		19FC50D21E8E5F8600DCB6DD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				1967FFE31E8E57F9002F0A8E /* ViewController.swift */,
 				19E5E3B51E93991700E62733 /* CompetitionInfoVC.swift */,
 				197754781E94D68800EDDB2B /* CategoriesVC.swift */,
+				199CA5B71E9D035000B591DB /* CompetitorsVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 			children = (
 				1977547A1E94DAB700EDDB2B /* MenCategoriesCVCell.swift */,
 				1977547C1E94DADD00EDDB2B /* WomenCategoriesCVCell.swift */,
+				199CA5B91E9D046B00B591DB /* CompetitorTVC.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -488,6 +494,8 @@
 				19E5E3B61E93991700E62733 /* CompetitionInfoVC.swift in Sources */,
 				1977547B1E94DAB700EDDB2B /* MenCategoriesCVCell.swift in Sources */,
 				1967FFEA1E8E57F9002F0A8E /* Judo_Heroes.xcdatamodeld in Sources */,
+				199CA5BA1E9D046B00B591DB /* CompetitorTVC.swift in Sources */,
+				199CA5B81E9D035000B591DB /* CompetitorsVC.swift in Sources */,
 				1967FFE41E8E57F9002F0A8E /* ViewController.swift in Sources */,
 				1967FFE21E8E57F9002F0A8E /* AppDelegate.swift in Sources */,
 				197754791E94D68800EDDB2B /* CategoriesVC.swift in Sources */,
